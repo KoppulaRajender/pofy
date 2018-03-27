@@ -9,13 +9,7 @@
     *{
       box-sizing: border-box;
     } 
-       #map {
-        height: 70%;
-        width: 100%;
-        border:1px solid #9191cc;
-        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.22);
-        border-radius: 10px;  
-       }
+      
        #loc{
           box-sizing: border-box;
           background-color:black;
@@ -27,7 +21,27 @@
           text-align: center;
           padding-top: 5px;
           margin-bottom: 3px;
-
+          /*position: absolute;*/
+       }
+       #status{
+        float:left;
+        height: 4em;
+        width: 7em;
+        line-height: 1;
+        top:0%;
+        left: 0%;
+        position: relative;
+        border-radius: 6px;
+        padding:1.5em;
+        text-align: center;
+        color: white;
+       }
+        #map {
+        height: 70%;
+        width: 100%;
+        border:1px solid #9191cc;
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.22);
+        border-radius: 10px;  
        }
        #eta{
         height: 6em;
@@ -52,7 +66,7 @@
   <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img src="css/bus.png" width="30" height="30" class="d-inline-block align-top" alt=""><b>POFY</b></a>
+        <img src="css/bus.png" width="30" height="30" left="48%" class="d-inline-block align-top" alt=""><b>POFY</b></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent"> </div>
     </div>
@@ -60,7 +74,7 @@
     
     <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
      
-    
+    <div id="status">Online</div> 
     <div id="loc">Location</div>
     <div id="map"></div>
     <div id="eta"></div>
@@ -118,11 +132,13 @@
    
    if(newPosition.flag==1)
    {
-     document.getElementById('loc').style.backgroundColor="#50c460";
+     document.getElementById('status').style.backgroundColor="#50c460";
+     document.getElementById('status').innerHTML="Online";
    }
-   else
-    document.getElementById('loc').style.backgroundColor="#f44271";
-   
+   else{
+    document.getElementById('status').style.backgroundColor="#f44271";
+   document.getElementById('status').innerHTML="Offline";
+    }
      //Set Position of marker
      marker.setPosition(point);
      
